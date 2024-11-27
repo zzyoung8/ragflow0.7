@@ -1,0 +1,19 @@
+# 基于现有的ragflow:0.7镜像
+FROM ragflow:0.7.4
+
+# 设置工作目录
+WORKDIR /ragflow
+
+# 更新前端代码
+ADD ./web ./web
+
+# 更新后端代码
+ADD ./api ./api
+ADD ./rag ./rag
+
+# 重新构建前端
+RUN cd ./web && npm install --force && npm run build
+
+# 使用基础镜像的入口点脚本和命令
+ENTRYPOINT ["./entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

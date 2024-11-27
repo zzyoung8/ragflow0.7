@@ -1,0 +1,9 @@
+FROM ragflow:0.7.4
+
+USER root
+
+# 赋予入口点脚本执行权限
+RUN chmod +x ./entrypoint.sh
+
+# 设置入口点
+ENTRYPOINT ["./entrypoint.sh"]

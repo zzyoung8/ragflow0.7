@@ -1,0 +1,7 @@
+From ragflow:0.7.1
+
+WORKDIR /ragflow
+
+ADD ./web ./web
+
+RUN cd ./web && npm install --force && npm run build
